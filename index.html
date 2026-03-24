@@ -825,6 +825,26 @@
       </div>
     </section>
   </main>
+  <!-- CDN으로 Supabase 불러오기 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // Supabase 초기화
+  const supabase = supabase.createClient(
+    'https://baivfcyijcwxljpujyvn.supabase.co',  // Project URL    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhaXZmY3lpamN3eGxqcHVqeXZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzNTEzMjQsImV4cCI6MjA4OTkyNzMyNH0.9hnVK8XthXH3FrRK5umAW4ys_7YG9lfO4PHpYmEcJkU'      // anon public 키
+  );
+
+  // 댓글 조회
+  const { data } = await supabase
+    .from('comments')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  // 댓글 작성
+  await supabase
+    .from('comments')
+    .insert({ nickname: '홍길동', content: '안녕하세요!' });
+</script>
 
   <footer>
     <div class="container footer-row">
